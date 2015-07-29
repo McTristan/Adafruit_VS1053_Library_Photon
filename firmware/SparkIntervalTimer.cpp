@@ -52,6 +52,8 @@ void Wiring_TIM3_Interrupt_Handler_override()
 }
 
 void Wiring_TIM4_Interrupt_Handler_override()
+<<<<<<< HEAD
+=======
 {
 	if (TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET)
 	{
@@ -69,6 +71,38 @@ void Wiring_TIM3_Interrupt_Handler_override()
 	}
 }
 
+void Wiring_TIM4_Interrupt_Handler_override()
+>>>>>>> 669eb4378cfc0730d1cfecb1bf071a94b306e601
+{
+	if (TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET)
+	{
+		TIM_ClearITPendingBit(TIM4, TIM_IT_Update);
+<<<<<<< HEAD
+=======
+		IntervalTimer::SIT_CALLBACK[1]();
+	}
+}
+
+void Wiring_TIM5_Interrupt_Handler_override()
+{
+	if (TIM_GetITStatus(TIM5, TIM_IT_Update) != RESET)
+	{
+		TIM_ClearITPendingBit(TIM5, TIM_IT_Update);
+>>>>>>> 669eb4378cfc0730d1cfecb1bf071a94b306e601
+		IntervalTimer::SIT_CALLBACK[2]();
+	}
+}
+#elif (PLATFORM_ID == 6)	//Photon
+void Wiring_TIM3_Interrupt_Handler_override()
+{
+	if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
+	{
+		TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
+		IntervalTimer::SIT_CALLBACK[0]();
+	}
+}
+
+<<<<<<< HEAD
 void Wiring_TIM4_Interrupt_Handler_override()
 {
 	if (TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET)
@@ -96,6 +130,17 @@ void Wiring_TIM6_Interrupt_Handler_override()
 	}
 }
 
+=======
+void Wiring_TIM6_Interrupt_Handler_override()
+{
+	if (TIM_GetITStatus(TIM6, TIM_IT_Update) != RESET)
+	{
+		TIM_ClearITPendingBit(TIM6, TIM_IT_Update);
+		IntervalTimer::SIT_CALLBACK[3]();
+	}
+}
+
+>>>>>>> 669eb4378cfc0730d1cfecb1bf071a94b306e601
 void Wiring_TIM7_Interrupt_Handler_override()
 {
 	if (TIM_GetITStatus(TIM7, TIM_IT_Update) != RESET)
@@ -189,8 +234,11 @@ void IntervalTimer::start_SIT(uint16_t Period, bool scale) {
 	uint16_t prescaler;
 	TIM_TypeDef* TIMx;
 	
+<<<<<<< HEAD
 	Serial.print("Starting SIT:");
 	Serial.println(SIT_id);
+=======
+>>>>>>> 669eb4378cfc0730d1cfecb1bf071a94b306e601
 	
 	//use SIT_id to identify TIM#
 	switch (SIT_id) {
@@ -253,6 +301,7 @@ void IntervalTimer::start_SIT(uint16_t Period, bool scale) {
 			break;
 	}
 
+	
 	timerInitStructure.TIM_Prescaler = prescaler;
 	timerInitStructure.TIM_CounterMode = TIM_CounterMode_Up;
 	timerInitStructure.TIM_Period = Period;
@@ -267,7 +316,11 @@ void IntervalTimer::start_SIT(uint16_t Period, bool scale) {
 	SIT_CALLBACK[SIT_id] = myISRcallback;
 
 	//Enable Timer Interrupt
+<<<<<<< HEAD
     nvicStructure.NVIC_IRQChannelPreemptionPriority = 10;
+=======
+    nvicStructure.NVIC_IRQChannelPreemptionPriority = 10;	// Could be changed but doesn't seem to have affect
+>>>>>>> 669eb4378cfc0730d1cfecb1bf071a94b306e601
     nvicStructure.NVIC_IRQChannelSubPriority = 1;
     nvicStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&nvicStructure);
@@ -398,7 +451,7 @@ void IntervalTimer::interrupt_SIT(action ACT)
 	switch (ACT) {
 	case INT_ENABLE:
 		//Enable Timer Interrupt
-		nvicStructure.NVIC_IRQChannelPreemptionPriority = 0;
+		nvicStructure.NVIC_IRQChannelPreemptionPriority = 2;
 		nvicStructure.NVIC_IRQChannelSubPriority = 1;
 		nvicStructure.NVIC_IRQChannelCmd = ENABLE;
 		NVIC_Init(&nvicStructure);
