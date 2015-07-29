@@ -1,0 +1,7 @@
+{
+  "name": "Adafruit_VS1053_Photon",
+  "author": "Limor Fried/Ladyada for Adafruit Industries, adapted for Spark Core by Paul Kourany",
+  "license": "BSD",
+  "version": "1.0.1",
+  "description": "This is a library for the Adafruit VS1053 Codec Breakout - specific version for the Particle Photon"
+}
