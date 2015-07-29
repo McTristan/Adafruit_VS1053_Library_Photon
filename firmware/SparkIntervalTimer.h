@@ -27,15 +27,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
 
 #if defined(PLATFORM_ID)
 #if (PLATFORM_ID == 0) // Core
-<<<<<<< HEAD
   #define SYSCORECLOCK	120000000UL
 #elif (PLATFORM_ID == 6) // Photon
   #define SYSCORECLOCK	72000000UL
-=======
-  #define SYSCORECLOCK	72000000UL		// Core provides SYSCORECLOCK to all timers
-#elif (PLATFORM_ID == 6) // Photon
-  #define SYSCORECLOCK	60000000UL		// Photon provides SYSCORECLOCK/2 as root clock to timers (except TIMER1)
->>>>>>> 669eb4378cfc0730d1cfecb1bf071a94b306e601
 #else
   #error "*** PLATFORM_ID not supported by this library. PLATFORM should be Core or Photon ***"
 #endif
@@ -48,12 +42,9 @@ enum action {INT_DISABLE, INT_ENABLE};
 extern "C" {
 #endif
 
-<<<<<<< HEAD
 //extern void (*Wiring_TIM2_Interrupt_Handler)(void);
 //extern void (*Wiring_TIM3_Interrupt_Handler)(void);
 //extern void (*Wiring_TIM4_Interrupt_Handler)(void);
-=======
->>>>>>> 669eb4378cfc0730d1cfecb1bf071a94b306e601
 
 #if (PLATFORM_ID == 0)	//Core
 extern void Wiring_TIM2_Interrupt_Handler_override(void);
