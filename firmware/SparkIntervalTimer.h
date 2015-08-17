@@ -97,11 +97,11 @@ class IntervalTimer {
 	if (!attachSystemInterrupt(SysInterrupt_TIM3_Update, Wiring_TIM3_Interrupt_Handler_override)) ;	//error
 	if (!attachSystemInterrupt(SysInterrupt_TIM4_Update, Wiring_TIM4_Interrupt_Handler_override)) ;	//error
 #elif defined (STM32F2XX)	//Photon+
-	if (!attachSystemInterrupt(SysInterrupt_TIM3_Update, Wiring_TIM3_Interrupt_Handler_override)) ;	//error
-	if (!attachSystemInterrupt(SysInterrupt_TIM4_Update, Wiring_TIM4_Interrupt_Handler_override)) ;	//error
-	if (!attachSystemInterrupt(SysInterrupt_TIM5_Update, Wiring_TIM5_Interrupt_Handler_override)) ;	//error
-	if (!attachSystemInterrupt(SysInterrupt_TIM6_Update, Wiring_TIM6_Interrupt_Handler_override)) digitalWrite(D7,HIGH);	//error
-	if (!attachSystemInterrupt(SysInterrupt_TIM7_Update, Wiring_TIM7_Interrupt_Handler_override)) digitalWrite(D5,HIGH);	//error
+	if (!attachInterrupt(SysInterrupt_TIM3_Update, Wiring_TIM3_Interrupt_Handler_override)) ;	//error
+	if (!attachInterrupt(SysInterrupt_TIM4_Update, Wiring_TIM4_Interrupt_Handler_override)) ;	//error
+	if (!attachInterrupt(SysInterrupt_TIM5_Update, Wiring_TIM5_Interrupt_Handler_override)) ;	//error
+	if (!attachInterrupt(SysInterrupt_TIM6_Update, Wiring_TIM6_Interrupt_Handler_override)) digitalWrite(D7,HIGH);	//error
+	if (!attachInterrupt(SysInterrupt_TIM7_Update, Wiring_TIM7_Interrupt_Handler_override)) digitalWrite(D5,HIGH);	//error
 #endif
 
 /*
