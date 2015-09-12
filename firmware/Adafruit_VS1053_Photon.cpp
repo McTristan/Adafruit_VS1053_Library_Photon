@@ -13,6 +13,7 @@
  ****************************************************/
 
 #if defined (SPARK)
+#include "application.h"
 #include "Adafruit_VS1053_Photon.h"
 #include "sd-card-library-photon-compat.h"
 #include "SparkIntervalTimer.h"
