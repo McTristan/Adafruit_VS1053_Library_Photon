@@ -102,7 +102,7 @@ boolean Adafruit_VS1053_FilePlayer::useInterrupt(uint8_t type) {
     return (t && t->begin(feeder, 1024)) ? true : false;
 #elif defined (SPARK)
     IntervalTimer *t = new IntervalTimer();
-    return (t && t->begin(feeder, 1024, uSec, TIMER2)) ? true : false;
+    return (t && t->begin(feeder, 1024, uSec, TIMER3)) ? true : false;
 #else
     return false;
 #endif
