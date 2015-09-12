@@ -17,14 +17,14 @@
  * along with the Arduino Sd2Card Library.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-#ifndef Sd2Card_h
-#define Sd2Card_h
+#ifndef _SD2_CARD
+#define _SD2_CARD
 /**
  * \file
  * Sd2Card class
  */
-#include "Sd2Card_config.h"
-#include "SdInfo.h"
+#include "sd2-card-config.h"
+#include "sd-info.h"
 
 #define SPI_BUFF_SIZE 512
 

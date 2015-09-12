@@ -19,8 +19,7 @@
  */
 
 #include "application.h"
-#include "Sd2Card.h"
-
+#include "sd2-card.h"
 
 //#include "spark_wiring_spi.h"
 //#include "spark_wiring_usbserial.h"
@@ -219,19 +218,21 @@ uint8_t Sd2Card::eraseSingleBlockEnable(void) {
  */
 uint8_t Sd2Card::init(uint8_t sckRateID, uint8_t chipSelectPin) {
   chipSelectPin_ = chipSelectPin;
-  pinMode(chipSelectPin_, OUTPUT);
-  SPI.begin();
   SPI.setDataMode(SPI_MODE0);
   SPI.setBitOrder(MSBFIRST);
   
+  if( sckRateID == SPI_FULL_SPEED ){
+    SPI.setClockDivider(SPI_CLOCK_DIV4);
+  }
+  else{
+    SPI.setClockDivider(SPI_CLOCK_DIV8);
+  }
+  
+  SPI.begin(chipSelectPin_);
+  
   SPImode_ = 1;		// Set hardware SPI mode
   
-  if( sckRateID == SPI_FULL_SPEED ){
-	  SPI.setClockDivider(SPI_CLOCK_DIV4);
-  }
-  else
-	  SPI.setClockDivider(SPI_CLOCK_DIV8);
-
+  //return init(SD_SPI);
   return init();
 }
 
@@ -760,22 +761,17 @@ uint8_t Sd2Card::sparkSPISend(uint8_t data) {
 	else {						// SPI Mode is Software so use bit bang method
 		for (uint8_t bit = 0; bit < 8; bit++)  {
 			if (data & (1 << (7-bit)))		// walks down mask from bit 7 to bit 0
-				//PIN_MAP[mosiPin_].gpio_peripheral->BSRR = PIN_MAP[mosiPin_].gpio_pin; // Data High
-				digitalWrite(mosiPin_, HIGH);
+				pinSetFast(mosiPin_); // Data High
 			else
-				//PIN_MAP[mosiPin_].gpio_peripheral->BRR = PIN_MAP[mosiPin_].gpio_pin; // Data Low
-				digitalWrite(mosiPin_, LOW);
+				pinResetFast(mosiPin_); // Data Low
 			
-			//PIN_MAP[clockPin_].gpio_peripheral->BSRR = PIN_MAP[clockPin_].gpio_pin; // Clock High
-			digitalWrite(clockPin_, HIGH);
+			pinSetFast(clockPin_); // Clock High
 
 			b <<= 1;
-			//if (PIN_MAP[misoPin_].gpio_peripheral->IDR & PIN_MAP[misoPin_].gpio_pin)
-			if (digitalRead(misoPin_))
+			if (pinReadFast(misoPin_))
 				b |= 1;
 
-			//PIN_MAP[clockPin_].gpio_peripheral->BRR = PIN_MAP[clockPin_].gpio_pin; // Clock Low
-			digitalWrite(clockPin_, LOW);
+			pinResetFast(clockPin_); // Clock Low
 		}
 	}
 	return b;

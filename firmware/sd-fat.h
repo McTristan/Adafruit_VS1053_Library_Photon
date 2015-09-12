@@ -17,16 +17,16 @@
  * along with the Arduino SdFat Library.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-#ifndef SdFat_h
-#define SdFat_h
+#ifndef _SD_FAT
+#define _SD_FAT
 /**
  * \file
  * SdFile and SdVolume classes
  */
 #include "application.h"
-#include "SdFatUtil.h"
-#include "Sd2Card.h"
-#include "FatStructs.h"
+#include "sd-fat-util.h"
+#include "sd2-card.h"
+#include "fat-structs.h"
 
 //#include "spark_wiring_print.h"
 

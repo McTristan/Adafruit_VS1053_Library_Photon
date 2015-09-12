@@ -19,8 +19,8 @@
  */
  
 #include "application.h"
-#include "SdFat.h"
-#include "SdFatUtil.h"
+#include "sd-fat.h"
+#include "sd-fat-util.h"
 
 //#include "spark_wiring_usbserial.h"
 

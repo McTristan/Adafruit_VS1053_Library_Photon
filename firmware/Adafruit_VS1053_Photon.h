@@ -15,7 +15,7 @@
 #define ADAFRUIT_VS1053_H
 
 #if defined (SPARK)
-#include "SD.h"
+#include "sd-card-library-photon-compat.h"
 #else
 #if (ARDUINO >= 100)
  #include <Arduino.h>
@@ -27,7 +27,7 @@
 #include "pins_arduino.h"
 #include "wiring_private.h"
 #include <SPI.h> 
-#include <SD.h>
+#include <sd-card-library-photon-compat.h>
 #endif	//SPARK
 
 #define VS1053_FILEPLAYER_TIMER0_INT 255 // allows useInterrupt to accept pins 0 to 254

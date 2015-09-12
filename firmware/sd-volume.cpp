@@ -18,7 +18,7 @@
  * <http://www.gnu.org/licenses/>.
  */
 #include "application.h"
-#include "SdFat.h"
+#include "sd-fat.h"
 
 //#include "spark_wiring_usbserial.h"
 

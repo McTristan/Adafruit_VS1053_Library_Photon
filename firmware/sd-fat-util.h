@@ -17,14 +17,14 @@
  * along with the Arduino SdFat Library.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-#ifndef SdFatUtil_h
-#define SdFatUtil_h
+#ifndef _SD_FAT_UTIL
+#define _SD_FAT_UTIL
 /**
  * \file
  * Useful utility functions.
  */
 #include "application.h"
-#include "Sd2Card.h"
+#include "sd2-card.h"
 //#include <string.h>
 /*
 #ifndef PSTR
